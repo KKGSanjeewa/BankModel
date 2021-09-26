@@ -31,7 +31,7 @@ function creditScore() {
 function firstTime() {
 
     var cv = parseInt(document.getElementById("firsttime").value);
-    if (cv != 0 || cv!=1 ) {
+    if (cv !== 0 || cv!==1 ) {
         document.getElementById("firsttime").value = "";
         alert("valid only 1 or 0 for yes  or no")
     }
@@ -42,7 +42,7 @@ function firstTime() {
 function mip() {
 
     var cv = parseInt(document.getElementById("mip").value);
-    if (!(cv  <= 1 & cv <=55 & cv.length < 4) ) {
+    if (!(cv  <= 1 & cv <=55 & document.getElementById("mip").value < 4) ) {
         document.getElementById("mip").value = "";
         alert("valid only 1%  and 55 % for yes  or no")
     }
@@ -71,7 +71,7 @@ function monthsDelinquent() {
 
 function dti() {
     var cv = parseInt(document.getElementById("DTI").value);
-    if (!(cv > 0 & cv < 65 & cv.length < 4)) {
+    if (!(cv > 0 & cv < 65 & document.getElementById("DTI").value < 4)) {
         document.getElementById("DTI").value = "";
         alert("value be on 0% - 65%");
         }
@@ -81,6 +81,8 @@ function origInterestRate() {
     var length = document.getElementById("OrigInterestRate").value.length;
     if (length > 6) {
         document.getElementById("OrigInterestRate").value = "";
+        alert("need to  less than 6 numbers");
+          document.getElementById("OrigInterestRate").selected=true;
     }
 }
 
@@ -91,6 +93,7 @@ function ocltv() {
     if (cv < 6 || cv > 200 || cv.length > 3) {
         document.getElementById("OCLTV").value = "";
         alert("value be on 6% - 105%");
+        document.getElementById("OCLTV").selected=true;
         }
 
 }
@@ -103,7 +106,7 @@ function ocltv() {
 
 
 
- 
+
 
 
     </script>
@@ -127,7 +130,12 @@ function ocltv() {
 
 <body>
 <div class="login">
-    <h1>Loan Prediction</h1>
+
+   <div style="margin-left: 150px; margin-top: 30px" class=" col-md-5">
+
+   <h3>
+        <small class="text-muted">Prediciting Mortgage</small>
+    </h3>
 
     <!-- Main Input For Receiving Query to our ML -->
     <form action="{{ url_for('predict')}}" method="post">
@@ -190,7 +198,8 @@ function ocltv() {
             <label for="OCLTV">OCLTV :</label>
             <input onblur="ocltv()" name="OCLTV_cat" type="number" class="form-control" id="OCLTV" required="required">
         </div>
-
+        <br>
+    <br>
 
 
 
@@ -199,11 +208,16 @@ function ocltv() {
 
     <br>
     <br>
-    {{ prediction }}
+
+        <h3>
+        <small class="text-muted"> {{ prediction }}</small>
+       </h3>
+
 
 </div>
-
+</div>
 
 </body>
 </html>
+
 
