@@ -154,7 +154,7 @@ function ocltv() {
             <!--Firsttime-->
             <div class="form-group">
                 <label for="creditscore"> First Time :</label>
-                <input type="text" name="FirstTimeHomebuyer" onblur="firstTime()" required="required" id="firsttime"/>
+                <input type="number" name="FirstTimeHomebuyer" onblur="firstTime()" required="required" id="firsttime"/>
 
             </div>
 
@@ -205,14 +205,14 @@ function ocltv() {
                        required="required">
             </div>
             <br>
-            <br>
+             
 
 
             <button type="submit" class="btn btn-primary btn-block btn-large">Predict</button>
         </form>
 
         <br>
-        <br>
+        
 
         <h3>
             <small class="text-muted"> {{ prediction }}</small>
@@ -224,4 +224,5 @@ function ocltv() {
 
 </body>
 </html>
+
 
