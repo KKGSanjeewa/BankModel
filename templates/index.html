@@ -1,41 +1,209 @@
 <!DOCTYPE html>
-<html >
+<html>
 <!--From https://codepen.io/frytyler/pen/EGdtg-->
 <head>
-  <meta charset="UTF-8">
-  <title>ML API</title>
-  <link href='https://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
-<link href='https://fonts.googleapis.com/css?family=Arimo' rel='stylesheet' type='text/css'>
-<link href='https://fonts.googleapis.com/css?family=Hind:300' rel='stylesheet' type='text/css'>
-<link href='https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300' rel='stylesheet' type='text/css'>
-  
+    <meta charset="UTF-8">
+    <title>ML API</title>
+
+    <script>
+var error = 0;
+
+
+function creditScore() {
+
+    var cv = document.getElementById("creditscore").value;
+    var cvint = parseInt(document.getElementById("creditscore").value);
+
+    if (cvint < 301 || cvint > 850) {
+        document.getElementById("creditscore").value = "";
+        error = 1;
+        alert("values must be  301 < value < 850 ");
+        document.getElementById("creditscore").focus();
+    } else {
+
+        error = 0;
+
+
+    }
+
+}
+
+function firstTime() {
+
+    var cv = parseInt(document.getElementById("firsttime").value);
+    if (cv != 0 || cv!=1 ) {
+        document.getElementById("firsttime").value = "";
+        alert("valid only 1 or 0 for yes  or no")
+    }
+
+
+}
+
+function mip() {
+
+    var cv = parseInt(document.getElementById("mip").value);
+    if (!(cv  <= 1 & cv <=55 & cv.length < 4) ) {
+        document.getElementById("mip").value = "";
+        alert("valid only 1%  and 55 % for yes  or no")
+    }
+
+
+}
+
+
+function ppm() {
+    var value = parseInt(document.getElementById("ppm").value);
+    if (value == 0 || value ==1 ) {
+        error=0;
+    }else{
+        document.getElementById("ppm").value = "";
+    alert ("Value supoosed to by 1 or 0 means Yes or No");
+    }
+}
+
+function monthsDelinquent() {
+    var value = parseInt(document.getElementById("MonthsDelinquent").value);
+    if (value >1500 ) {
+       document.getElementById("MonthsDelinquent").value = "";
+        alert ("invalid month value");
+    }
+}
+
+function dti() {
+    var cv = parseInt(document.getElementById("DTI").value);
+    if (!(cv > 0 & cv < 65 & cv.length < 4)) {
+        document.getElementById("DTI").value = "";
+        alert("value be on 0% - 65%");
+        }
+}
+
+function origInterestRate() {
+    var length = document.getElementById("OrigInterestRate").value.length;
+    if (length > 6) {
+        document.getElementById("OrigInterestRate").value = "";
+    }
+}
+
+
+function ocltv() {
+
+    var cv = parseInt(document.getElementById("OCLTV").value);
+    if (cv < 6 || cv > 200 || cv.length > 3) {
+        document.getElementById("OCLTV").value = "";
+        alert("value be on 6% - 105%");
+        }
+
+}
+
+
+
+
+
+
+
+
+
+ 
+
+
+    </script>
+    <!--js file End here-->
+
+
+    <link href='https://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Arimo' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Hind:300' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300' rel='stylesheet' type='text/css'>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+    <!-- JavaScript Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ"
+            crossorigin="anonymous"></script>
+
+
 </head>
 
 <body>
- <div class="login">
-	<h1>Loan Prediction</h1>
+<div class="login">
+    <h1>Loan Prediction</h1>
 
-     <!-- Main Input For Receiving Query to our ML -->
-    <form action="{{ url_for('predict')}}"method="post">
-    	<input type="text" name="CreditScore" placeholder="CreditScore" required="required" />
-        <input type="text" name="FirstTimeHomebuyer" placeholder="FirstTimeHomebuyer" required="required" />
-		<input type="text" name="MIP" placeholder="MIP" required="required" />
-    <input type="text" name="PPM" placeholder="PPM" required="required" />
-    <input type="text" name="MonthsDelinquent" placeholder="Months Delinquent" required="required" />
-    <input type="text" name="DTI_cat" placeholder="DTI category (0-2)" required="required" />
-    <input type="text" name="MIR_cat" placeholder="MIR category (0-2)" required="required" />
-    <input type="text" name="IntRate_Cat" placeholder="Interest Rate Category" required="required" />
-    <input type="text" name="OCLTV_cat" placeholder="OCLTV category" required="required" />
+    <!-- Main Input For Receiving Query to our ML -->
+    <form action="{{ url_for('predict')}}" method="post">
+
+        <!--credit_score -->
+        <div class="form-group">
+            <label for="creditscore">Credit Score:</label>
+            <input onblur="creditScore()" type="number" class="form-control" name="CreditScore" id="creditscore"
+                   required="required">
+        </div>
+
+        <!--Firsttime-->
+        <div class="form-group">
+            <label for="creditscore"> First Time :</label>
+            <input type="text" name="FirstTimeHomebuyer" onblur="firstTime()" required="required" id="firsttime"/>
+
+        </div>
+
+        <!--MIP-->
+        <div class="form-group">
+            <label for="mip">MIP:</label>
+            <input type="number" onblur="mip()" class="form-control" id="mip" name="MIP" required="required">
+        </div>
+
+
+        <!--PPM-->
+        <div class="form-group">
+            <label for="ppm">PPM :</label>
+            <input type="number" onblur="ppm()" class="form-control" id="ppm" name="PPM" required="required">
+        </div>
+
+        <!--MonthsDelinquent-->
+        <div class="form-group">
+            <label for="MonthsDelinquent">Months of Delinquent:</label>
+            <input type="number" onblur="monthsDelinquent()" name="MonthsDelinquent" class="form-control"
+                   id="MonthsDelinquent" required="required">
+        </div>
+
+        <!--DTI-->
+        <div class="form-group">
+            <label for="DTI">DTI :</label>
+            <input type="number" onblur="dti()" name="DTI_cat" class="form-control" required="required" id="DTI">
+        </div>
+
+        <!--MIR-->
+        <div class="form-group">
+            <label for="MIR">MIR :</label>
+            <input type="number" name="MIR_cat" class="form-control" required="required" id="MIR">
+        </div>
+
+        <!--OrigInterestRate-->
+        <div class="form-group">
+            <label for="OrigInterestRate">OrigInterestRate :</label>
+            <input onblur="origInterestRate()" name="IntRate_Cat" required="required" type="number" class="form-control"
+                   id="OrigInterestRate">
+        </div>
+
+        <!--OCLTV-->
+        <div class="form-group">
+            <label for="OCLTV">OCLTV :</label>
+            <input onblur="ocltv()" name="OCLTV_cat" type="number" class="form-control" id="OCLTV" required="required">
+        </div>
+
+
+
 
         <button type="submit" class="btn btn-primary btn-block btn-large">Predict</button>
     </form>
 
-   <br>
-   <br>
-   {{ prediction }}
+    <br>
+    <br>
+    {{ prediction }}
 
- </div>
+</div>
 
 
 </body>
 </html>
+
