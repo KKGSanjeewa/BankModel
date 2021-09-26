@@ -31,8 +31,10 @@ function creditScore() {
 function firstTime() {
 
     var cv = parseInt(document.getElementById("firsttime").value);
-    if (cv !== 0 || cv!==1 ) {
-        document.getElementById("firsttime").value = "";
+    if (cv == 0 || cv==1 ) {
+
+    }else{
+    document.getElementById("firsttime").value = "";
         alert("valid only 1 or 0 for yes  or no")
     }
 
@@ -71,7 +73,8 @@ function monthsDelinquent() {
 
 function dti() {
     var cv = parseInt(document.getElementById("DTI").value);
-    if (!(cv > 0 & cv < 65 & document.getElementById("DTI").value < 4)) {
+    if (cv > 0 && cv < 65 && document.getElementById("DTI").value < 4)) {
+        }else{
         document.getElementById("DTI").value = "";
         alert("value be on 0% - 65%");
         }
@@ -109,6 +112,7 @@ function ocltv() {
 
 
 
+
     </script>
     <!--js file End here-->
 
@@ -131,93 +135,93 @@ function ocltv() {
 <body>
 <div class="login">
 
-   <div style="margin-left: 150px; margin-top: 30px" class=" col-md-5">
-
-   <h3>
-        <small class="text-muted">Prediciting Mortgage</small>
-    </h3>
-
-    <!-- Main Input For Receiving Query to our ML -->
-    <form action="{{ url_for('predict')}}" method="post">
-
-        <!--credit_score -->
-        <div class="form-group">
-            <label for="creditscore">Credit Score:</label>
-            <input onblur="creditScore()" type="number" class="form-control" name="CreditScore" id="creditscore"
-                   required="required">
-        </div>
-
-        <!--Firsttime-->
-        <div class="form-group">
-            <label for="creditscore"> First Time :</label>
-            <input type="text" name="FirstTimeHomebuyer" onblur="firstTime()" required="required" id="firsttime"/>
-
-        </div>
-
-        <!--MIP-->
-        <div class="form-group">
-            <label for="mip">MIP:</label>
-            <input type="number" onblur="mip()" class="form-control" id="mip" name="MIP" required="required">
-        </div>
-
-
-        <!--PPM-->
-        <div class="form-group">
-            <label for="ppm">PPM :</label>
-            <input type="number" onblur="ppm()" class="form-control" id="ppm" name="PPM" required="required">
-        </div>
-
-        <!--MonthsDelinquent-->
-        <div class="form-group">
-            <label for="MonthsDelinquent">Months of Delinquent:</label>
-            <input type="number" onblur="monthsDelinquent()" name="MonthsDelinquent" class="form-control"
-                   id="MonthsDelinquent" required="required">
-        </div>
-
-        <!--DTI-->
-        <div class="form-group">
-            <label for="DTI">DTI :</label>
-            <input type="number" onblur="dti()" name="DTI_cat" class="form-control" required="required" id="DTI">
-        </div>
-
-        <!--MIR-->
-        <div class="form-group">
-            <label for="MIR">MIR :</label>
-            <input type="number" name="MIR_cat" class="form-control" required="required" id="MIR">
-        </div>
-
-        <!--OrigInterestRate-->
-        <div class="form-group">
-            <label for="OrigInterestRate">OrigInterestRate :</label>
-            <input onblur="origInterestRate()" name="IntRate_Cat" required="required" type="number" class="form-control"
-                   id="OrigInterestRate">
-        </div>
-
-        <!--OCLTV-->
-        <div class="form-group">
-            <label for="OCLTV">OCLTV :</label>
-            <input onblur="ocltv()" name="OCLTV_cat" type="number" class="form-control" id="OCLTV" required="required">
-        </div>
-        <br>
-    <br>
-
-
-
-        <button type="submit" class="btn btn-primary btn-block btn-large">Predict</button>
-    </form>
-
-    <br>
-    <br>
+    <div style="margin-left: 150px; margin-top: 30px" class=" col-md-5">
 
         <h3>
-        <small class="text-muted"> {{ prediction }}</small>
-       </h3>
+            <small class="text-muted">Prediciting Mortgage</small>
+        </h3>
+
+        <!-- Main Input For Receiving Query to our ML -->
+        <form action="{{ url_for('predict')}}" method="post">
+
+            <!--credit_score -->
+            <div class="form-group">
+                <label for="creditscore">Credit Score:</label>
+                <input onblur="creditScore()" type="number" class="form-control" name="CreditScore" id="creditscore"
+                       required="required">
+            </div>
+
+            <!--Firsttime-->
+            <div class="form-group">
+                <label for="creditscore"> First Time :</label>
+                <input type="text" name="FirstTimeHomebuyer" onblur="firstTime()" required="required" id="firsttime"/>
+
+            </div>
+
+            <!--MIP-->
+            <div class="form-group">
+                <label for="mip">MIP:</label>
+                <input type="number" onblur="mip()" class="form-control" id="mip" name="MIP" required="required">
+            </div>
 
 
-</div>
+            <!--PPM-->
+            <div class="form-group">
+                <label for="ppm">PPM :</label>
+                <input type="number" onblur="ppm()" class="form-control" id="ppm" name="PPM" required="required">
+            </div>
+
+            <!--MonthsDelinquent-->
+            <div class="form-group">
+                <label for="MonthsDelinquent">Months of Delinquent:</label>
+                <input type="number" onblur="monthsDelinquent()" name="MonthsDelinquent" class="form-control"
+                       id="MonthsDelinquent" required="required">
+            </div>
+
+            <!--DTI-->
+            <div class="form-group">
+                <label for="DTI">DTI :</label>
+                <input type="number" onblur="dti()" name="DTI_cat" class="form-control" required="required" id="DTI">
+            </div>
+
+            <!--MIR-->
+            <div class="form-group">
+                <label for="MIR">MIR :</label>
+                <input type="number" name="MIR_cat" class="form-control" required="required" id="MIR">
+            </div>
+
+            <!--OrigInterestRate-->
+            <div class="form-group">
+                <label for="OrigInterestRate">OrigInterestRate :</label>
+                <input onblur="origInterestRate()" name="IntRate_Cat" required="required" type="number"
+                       class="form-control"
+                       id="OrigInterestRate">
+            </div>
+
+            <!--OCLTV-->
+            <div class="form-group">
+                <label for="OCLTV">OCLTV :</label>
+                <input onblur="ocltv()" name="OCLTV_cat" type="number" class="form-control" id="OCLTV"
+                       required="required">
+            </div>
+            <br>
+            <br>
+
+
+            <button type="submit" class="btn btn-primary btn-block btn-large">Predict</button>
+        </form>
+
+        <br>
+        <br>
+
+        <h3>
+            <small class="text-muted"> {{ prediction }}</small>
+        </h3>
+
+
+    </div>
 </div>
 
 </body>
 </html>
-
 
